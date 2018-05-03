@@ -13,3 +13,9 @@ Alunos: [Leandro Chesini](https://github.com/chesini), [Lucas Paris](https://git
 - [ ] A complexidade está ruim. Precisamos achar os gargálos e tentar
   resolve-los.
 - [ ] Precisamos definir critérios do que é uma boa correção e o que não é uma boa correção.
+
+## Para compilar e rodar
+
+`` g++ main.c trie.cpp -std=c++11 ``
+
+`` ./a.out ``
