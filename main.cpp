@@ -68,25 +68,12 @@ int main (int argc, char* argv[]){
                 erro = arvore.ondeErro(linhaAux);
                 //erro--;
                 qtd = 0;
-                //auto ponteirosCandidatos = arvore.complete(linhaAux);
 
                 cout << erro << endl;
                
                 auto correcoes = arvore.possiveisCandidatos(original, erro);
                 qtd = correcoes.size();
-                /*do {
-                    linhaAux = original.substr(0, erro);
-                    cout << "Nova string: " << linhaAux << endl;
-                    ponteirosCandidatos = arvore.complete(linhaAux);
-                    qtd = ponteirosCandidatos.size();
-                    
-                    if (qtd < 1) {
-                        erro--;
-                    }
-
-                } while (qtd < 1 && erro != 0); // se nao tiver nenhuma sugestao, ou a substring acabar
-                */
-
+                
                 if (qtd == 0) {
                     linhaAux = original.substr(1, tamanhoOriginal);
                     correcoes = arvore.complete(linhaAux);
@@ -94,17 +81,15 @@ int main (int argc, char* argv[]){
                     if (qtd == 0) cout << "Não foi possível corrigir a palavra" << endl;
                     else {
                         for (i = 0; i < qtd; i++) {
-                            erro = abs(
-                                    tamanhoOriginal - (*correcoes[i]).size());
-                            if (erro < 2)
+                            erro = tamanhoOriginal - (*correcoes[i]).size();
+                            if (abs(erro) < 2)
                                 cout << "Sugestão: " << *correcoes[i] << endl;
                         }
                     }
                 } else {
                     for (i = 0; i < qtd; i++) {
-                        erro = abs(
-                                tamanhoOriginal - (*correcoes[i]).size());
-                        if (erro < 2) { // se só tiver um caracter a mais ou a menos em relaçao a string original
+                        erro = tamanhoOriginal - (*correcoes[i]).size();
+                        if (abs(erro) < 2) { // se só tiver um caracter a mais ou a menos em relaçao a string original
                             cout << "Sugestão: " << *correcoes[i] << endl;
                         }
                     }
