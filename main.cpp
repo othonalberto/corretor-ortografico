@@ -92,11 +92,18 @@ int main (int argc, char* argv[]){
                     correcoes = arvore.complete(linhaAux);
                     qtd = correcoes.size();
                     if (qtd == 0) cout << "Não foi possível corrigir a palavra" << endl;
-                    else for (i = 0; i < qtd; i++)
-                            cout << "Sugestão: " << *correcoes[i] << endl;
+                    else {
+                        for (i = 0; i < qtd; i++) {
+                            erro = abs(
+                                    tamanhoOriginal - (*correcoes[i]).size());
+                            if (erro < 2)
+                                cout << "Sugestão: " << *correcoes[i] << endl;
+                        }
+                    }
                 } else {
                     for (i = 0; i < qtd; i++) {
-                        erro = original.size() - (*correcoes[i]).size();
+                        erro = abs(
+                                tamanhoOriginal - (*correcoes[i]).size());
                         if (erro < 2) { // se só tiver um caracter a mais ou a menos em relaçao a string original
                             cout << "Sugestão: " << *correcoes[i] << endl;
                         }
