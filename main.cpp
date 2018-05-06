@@ -81,18 +81,14 @@ int main (int argc, char* argv[]){
                     if (qtd == 0) cout << "Não foi possível corrigir a palavra" << endl;
                     else {
                         for (i = 0; i < qtd; i++) {
-                            erro = tamanhoOriginal - (*correcoes[i]).size();
-                            if (abs(erro) < 2)
+                            if (boaSugestao(original, (*correcoes[i])))
                                 cout << "Sugestão: " << *correcoes[i] << endl;
                         }
                     }
                 } else {
                     for (i = 0; i < qtd; i++) {
-                        erro = tamanhoOriginal - (*correcoes[i]).size();
-                        if (abs(erro) < 2) { // se só tiver um caracter a mais ou a menos em relaçao a string original
+                        if (boaSugestao(original, (*correcoes[i]))) { // se só tiver um caracter a mais ou a menos em relaçao a string original
                             cout << "Sugestão: " << *correcoes[i] << endl;
-                            cout << typeid(*correcoes[i]).name() << endl;
-                            cout << boaSugestao(original, (*correcoes[i])) << endl;
                         }
                     }
                 }
