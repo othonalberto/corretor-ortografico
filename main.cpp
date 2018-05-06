@@ -3,6 +3,7 @@
 #include <string>
 
 #include "trie.hpp"
+#include "outras.hpp"
 
 #include <cassert>
 #include <vector>
@@ -14,8 +15,8 @@ using namespace std;
 int main (int argc, char* argv[]){
 
 	fstream dicIn;
-    string nameFile = "pequena.txt",
-    //string nameFile = "lista.txt",
+    //string nameFile = "pequena.txt",
+    string nameFile = "lista.txt",
            linhaAux,
            input;
 
@@ -40,6 +41,7 @@ int main (int argc, char* argv[]){
 	nameFile = "lista_saida.txt";
 
     cout << "População da Trie iniciada." << endl;
+    cout << "Para sair, digitar out" << endl;
 
 	while( !(dicIn.eof()) ){
 		dicIn.getline(linha, TAM_LINHA);
@@ -58,7 +60,7 @@ int main (int argc, char* argv[]){
         cin >> linha;
         linhaAux.append(linha);
          
-        if (linhaAux == "0") {
+        if (linhaAux == "out") {
             entrada = false;
         } else {
             if (arvore.has(linhaAux)) cout << linhaAux << endl;
@@ -66,8 +68,6 @@ int main (int argc, char* argv[]){
                 auto original = linhaAux;
                 tamanhoOriginal = original.size();
                 erro = arvore.ondeErro(linhaAux);
-                //erro--;
-                qtd = 0;
 
                 cout << erro << endl;
                
@@ -91,6 +91,8 @@ int main (int argc, char* argv[]){
                         erro = tamanhoOriginal - (*correcoes[i]).size();
                         if (abs(erro) < 2) { // se só tiver um caracter a mais ou a menos em relaçao a string original
                             cout << "Sugestão: " << *correcoes[i] << endl;
+                            cout << typeid(*correcoes[i]).name() << endl;
+                            cout << boaSugestao(original, (*correcoes[i])) << endl;
                         }
                     }
                 }
