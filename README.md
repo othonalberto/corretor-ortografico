@@ -9,7 +9,6 @@ Alunos: [Leandro Chesini](https://github.com/chesini), [Lucas Paris](https://git
 
 ## Questões a resolver:
 
-- [ ] Professora irá aceitar utilizar bibliotecas de terceiros?
 - [ ] A complexidade está ruim. Precisamos achar os gargálos e tentar
   resolve-los.
 - [ ] Precisamos definir critérios do que é uma boa correção e o que não é uma boa correção.
