@@ -16,7 +16,7 @@ int main (int argc, char* argv[]){
 
 	fstream dicIn;
     //string nameFile = "pequena.txt",
-    string nameFile = "lista.txt",
+    string nameFile = "listautf8.txt",
            linhaAux,
            input;
 
@@ -63,7 +63,8 @@ int main (int argc, char* argv[]){
         if (linhaAux == "out") {
             entrada = false;
         } else {
-            if (arvore.has(linhaAux)) cout << linhaAux << endl;
+            if (arvore.has(linhaAux)) 
+                cout << linhaAux << endl;
             else {
                 auto original = linhaAux;
                 tamanhoOriginal = original.size();
@@ -81,6 +82,7 @@ int main (int argc, char* argv[]){
                     qtd = correcoes.size();
                     if (qtd == 0) cout << "Não foi possível corrigir a palavra" << endl;
                     else {
+
                         for (i = 0; i < qtd; i++) {
                             if (boaSugestao(original, (*correcoes[i])))
                                 cout << "Sugestão: " << *correcoes[i] << endl;
