@@ -71,13 +71,11 @@ int main (int argc, char* argv[]){
                 erro = arvore.ondeErro(linhaAux);
                 erro--;
 
-                //cout << erro << endl;
- 
                 auto correcoes = arvore.possiveisCandidatos(original, erro);
                 qtd = correcoes.size();
                 
                 if (qtd == 0) {
-                    linhaAux = original.substr(1, tamanhoOriginal);
+                    linhaAux = original.substr(1, tamanhoOriginal); // funcao substr: copia uma string de a até b
                     correcoes = arvore.complete(linhaAux);
                     qtd = correcoes.size();
                     if (qtd == 0) cout << "Não foi possível corrigir a palavra" << endl;
