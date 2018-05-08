@@ -16,6 +16,6 @@ Alunos: [Leandro Chesini](https://github.com/chesini), [Lucas Paris](https://git
 
 ## Para compilar e rodar
 
-`` g++ main.c trie.cpp -std=c++11 ``
+`` make ``
 
 `` ./a.out ``

@@ -9,7 +9,7 @@
 #include <vector>
 
 
-#define TAM_LINHA 500 
+#define TAM_LINHA 500
 using namespace std;
 
 int main (int argc, char* argv[]){
@@ -24,7 +24,7 @@ int main (int argc, char* argv[]){
 
     int erro,
         i;
-        
+ 
     unsigned int qtd,
         tamanhoOriginal;
 
@@ -59,7 +59,7 @@ int main (int argc, char* argv[]){
         cout << "";
         cin >> linha;
         linhaAux.append(linha);
-         
+ 
         if (linhaAux == "out") {
             entrada = false;
         } else {
@@ -68,9 +68,10 @@ int main (int argc, char* argv[]){
                 auto original = linhaAux;
                 tamanhoOriginal = original.size();
                 erro = arvore.ondeErro(linhaAux);
+                erro--;
 
-                cout << erro << endl;
-               
+                //cout << erro << endl;
+ 
                 auto correcoes = arvore.possiveisCandidatos(original, erro);
                 qtd = correcoes.size();
                 

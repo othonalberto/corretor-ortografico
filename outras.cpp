@@ -21,6 +21,7 @@ bool boaSugestao(std::string original, std::string sugestao) {
     /* próximo passo: alinhamento das strings
      * precisamos comparar caracter por caracter (O(n)) e achar um limite justo
      */
+
     if (erro < 2) return true;
     else return false;
 }
