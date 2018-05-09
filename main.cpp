@@ -15,8 +15,8 @@ using namespace std;
 int main (int argc, char* argv[]){
 
 	fstream dicIn;
-    //string nameFile = "pequena.txt",
-    string nameFile = "listautf8.txt",
+    string nameFile = "pequena.txt",
+    //string nameFile = "listautf8.txt",
            linhaAux,
            input;
 
