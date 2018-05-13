@@ -62,41 +62,28 @@ int main (int argc, char* argv[]){
         if (arvore.has(linhaAux)) 
             cout << linhaAux << endl;
         else {
+
             qtdEncontradas = 0;
             auto original = linhaAux;
             tamanhoOriginal = original.size();
             erro = arvore.ondeErro(linhaAux);
             erro--;
 
-            auto correcoes = arvore.possiveisCandidatos(original, erro);
-            qtd = correcoes.size();
-                
-            if (qtd == 0) {
-                linhaAux = original.substr(1, tamanhoOriginal); // funcao substr: copia uma string de a até b
-                correcoes = arvore.complete(linhaAux);
+            while (qtdEncontradas == 0 && erro > 0) {
+                auto correcoes = arvore.possiveisCandidatos(original, erro);
                 qtd = correcoes.size();
-                if (qtd == 0) cout << "Não foi possível corrigir a palavra" << endl;
-                else {
-                    for (i = 0; i < qtd; i++) {
-                        if (boaSugestao(original, (*correcoes[i]))) {
-                            qtdEncontradas++;
-                            encontradas.push_back((*correcoes[i]));
-                        }
-                    }
-                }
-                        
-            } else {
                 for (i = 0; i < qtd; i++) {
-                    if (boaSugestao(original, (*correcoes[i]))) { // se só tiver um caracter a mais ou a menos em relaçao a string original
+                    if (boaSugestao(original, (*correcoes[i]))) {
                         qtdEncontradas++;
                         encontradas.push_back((*correcoes[i]));
                     }
                 }
+           
+                erro--;
             }
-  
 
             if (qtdEncontradas == 0)
-                cout << "Não foi possível corrigir a palavra" << endl;
+                cout << "Não foi possível corrigir a palavra \"" << original << "\"" << endl;
             else {
                 while (qtdEncontradas > 0) {
                     qtdEncontradas--;

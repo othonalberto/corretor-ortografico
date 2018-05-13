@@ -67,7 +67,6 @@ bool boaSugestao(std::string original, std::string sugestao) {
             if (i < idxMenor-1 && menor[i] == maior[i+1]) qtdDentro++;
     }
 
-    //std::cout << qtdDentro << std::endl;
 
     if (erro < 2 &&
             (sugestao.size() - qtdIgual) < 2 &&

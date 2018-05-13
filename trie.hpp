@@ -117,7 +117,6 @@ class trie
    
         } while (qtd < 1 && erro != 0); // se nao tiver nenhuma sugestao, ou a substring acabar
     
-
         if (erro == 0) return std::vector<const K *>();
         else return ponteirosCandidatos;
 
