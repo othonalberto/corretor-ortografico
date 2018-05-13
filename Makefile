@@ -11,8 +11,8 @@ COMPILER_FLAGS = -Wall
 # os = $(shell uname -s)
 
 # Nome da saída
-#OUTPUT_NAME = a.out
-OUTPUT_NAME = a.exe
+OUTPUT_NAME = a.out
+#OUTPUT_NAME = a.exe
 
 FLAGS = -std=c++11
 

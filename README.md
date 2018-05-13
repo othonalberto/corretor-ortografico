@@ -20,6 +20,7 @@ Alunos: [Leandro Chesini](https://github.com/chesini), [Lucas Paris](https://git
 `` ./a.out ``
 
 ## Para compilar e rodar no Windows
+
 - Instalar o MinGW (http://www.mingw.org/) [Instalar mingw32-base e mingw32-gcc-g++]
 - Instalar o gnu-mcu (https://gnu-mcu-eclipse.github.io/windows-build-tools/install/) [Embora no site não seja recomendado configurar a variável de ambiente PATH no Windows, é a maneira mais fácil de deixar 'make' e 'rm' disponíveis no Prompt de Comando.]
 - Alterar no arquivo Makefile a variável OUTPUT_NAME para nomeDoArquivo.exe
