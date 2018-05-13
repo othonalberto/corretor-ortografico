@@ -35,11 +35,8 @@ int main (int argc, char* argv[]){
 
 	dicIn.open(nameFile, std::fstream::in);
 	if(dicIn.fail()){
-		cout << "Problema entrada" << endl;
+		cout << "Problema no arquivo de entrada" << endl;
 	}
-
-	nameFile.clear();
-	nameFile = "lista_saida.txt";
 
     cout << "CORRETOR ORTOGRÁFICO" << endl;
 
@@ -52,7 +49,7 @@ int main (int argc, char* argv[]){
         linhaAux.clear();
 	}
 
-    cout << "Pronto para uso. " << endl;
+    cout << "Pronto para uso. Para sair, CTRL+C" << endl;
 
     while (true) {
         cout << "";
@@ -62,7 +59,6 @@ int main (int argc, char* argv[]){
         if (arvore.has(linhaAux)) 
             cout << linhaAux << endl;
         else {
-
             qtdEncontradas = 0;
             auto original = linhaAux;
             tamanhoOriginal = original.size();
