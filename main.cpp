@@ -15,17 +15,17 @@ using namespace std;
 int main (int argc, char* argv[]){
 
 	fstream dicIn;
-    //string nameFile = "pequena.txt",
+
     string nameFile = "listautf8.txt",
            linhaAux,
            input;
 
     int erro,
         i,
-        qtdEncontradas = 0;
+        qtdEncontradas = 0,
+        qtd;
 
-    unsigned int qtd,
-                 tamanhoOriginal;
+    unsigned int tamanhoOriginal;
                  
     vector<string> encontradas;
 
