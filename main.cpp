@@ -84,7 +84,7 @@ int main (int argc, char* argv[]) {
                 // aqui entra a questão do "Wedro"
                 string nova = arvore.substituicao(original);
                 if (nova != string())
-                    cout << "> " >> nova << endl;
+                    cout << "> " << nova << endl;
                 else 
                     cout << "Não foi possível corrigir a palavra \"" << original << "\"" << endl;
             } else {

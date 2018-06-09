@@ -85,7 +85,7 @@ class trie
             tamanho = entrada.size(),
             cont = 0;
 
-        trie *node = this;
+        const trie *node = this;
 
         for (i = 0; i < tamanho; i++) { 
             auto achado = node->children.find(entrada[i]);
@@ -101,7 +101,7 @@ class trie
     std::vector<const K *> possiveisCandidatos(const K original, unsigned int erro) const {
         string linhaAux;
         linhaAux = original.substr(0, erro);
-        auto arvore = this;
+        const trie *arvore = this;
  
         auto ponteirosCandidatos = arvore->complete(linhaAux);
         unsigned int qtd = 0;
@@ -123,18 +123,7 @@ class trie
     }
 
     string substituicao(string original) const {
-        // essa funcao irá mudar a primeira letra da palavra e tentar encontra UMA
-        // nova string
-    
-        // exemplo: Wedro
-        // Aedro existe? Nao
-        // Bedro existe? Nao
-        // Cedro existe? Sim!
-        // Então, retorna
-    
-        // Creio que para isso cria-se um vetor das letras do alfabeto
-        // faz um laço for pra ficar substituindo
-        // e aplica o método .has()
+        // muda a primeira letra da palavra e tentar encontrar UMA nova string
 
         string copia = original;
 

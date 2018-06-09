@@ -5,7 +5,7 @@ OBJS = main.cpp trie.cpp outras.cpp
 CC = g++
 
 # Flags para o compilador
-COMPILER_FLAGS = -w
+COMPILER_FLAGS = -Wall
 
 # Nome da saída
 OUTPUT_NAME = a.out
