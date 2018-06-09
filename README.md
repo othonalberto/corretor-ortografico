@@ -11,7 +11,18 @@ Alunos: [Leandro Chesini](https://github.com/chesini), [Lucas Paris](https://git
 
 - [ ] A complexidade está ruim. Precisamos achar os gargálos e tentar
   resolve-los.
-- [ ] Precisamos definir critérios do que é uma boa correção e o que não é uma boa correção.
+- [ ] - Processar todas as palavras duma vez
+    - Retornar somente as melhores dentre elas
+    - Sistema de pontuação
+
+- [x] - No caso do "wedro" abaixo, quando chega no index 0 sem nenhuma palavra
+boa, começa a trocar a primeira letra
+
+Exemplos de entrada de devem ser melhoradas:
+
+    - debro
+    - wedro
+    - tatauga
 
 ## Para compilar e rodar
 
