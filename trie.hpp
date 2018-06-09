@@ -80,7 +80,7 @@ class trie
     }
 
     // ================================================================= //
-    int ondeErro(const K &entrada){
+    int ondeErro(const K &entrada) {
         int i = 0,
             tamanho = entrada.size(),
             cont = 0;
@@ -98,7 +98,7 @@ class trie
         return cont;
     }
 
-    std::vector<const K *> possiveisCandidatos(const K original, unsigned int erro) {
+    std::vector<const K *> possiveisCandidatos(const K original, unsigned int erro) const {
         string linhaAux;
         linhaAux = original.substr(0, erro);
         auto arvore = this;
@@ -135,6 +135,19 @@ class trie
         // Creio que para isso cria-se um vetor das letras do alfabeto
         // faz um laço for pra ficar substituindo
         // e aplica o método .has()
+
+        string copia = original;
+
+        int i;
+
+        for (i = 97; i < 123; i++ ) {
+            copia[0] = char(i); 
+
+            if (this->has(copia)) 
+                return copia;
+        }
+   
+        return string();
     }
 
     protected:

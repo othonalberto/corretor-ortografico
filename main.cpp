@@ -3,6 +3,7 @@
 #include <string>
 #include <cassert>
 #include <vector>
+#include <algorithm>
 
 #include "trie.hpp"
 #include "outras.hpp"
@@ -55,7 +56,8 @@ int main (int argc, char* argv[]) {
         cout << "";
         cin >> linha;
         linhaAux.append(linha);
- 
+        std::transform(linhaAux.begin(), linhaAux.end(), linhaAux.begin(), ::tolower);
+
         if (arvore.has(linhaAux)) 
             cout << linhaAux << endl;
         else {
@@ -78,9 +80,14 @@ int main (int argc, char* argv[]) {
                 erro--;
             }
 
-            if (qtdSugestoes == 0)
-                cout << "Não foi possível corrigir a palavra \"" << original << "\"" << endl;
-            else {
+            if (qtdSugestoes == 0) {
+                // aqui entra a questão do "Wedro"
+                string nova = arvore.substituicao(original);
+                if (nova != string())
+                    cout << "> " >> nova << endl;
+                else 
+                    cout << "Não foi possível corrigir a palavra \"" << original << "\"" << endl;
+            } else {
                 while (qtdSugestoes > 0) {
                     qtdSugestoes--;
                     cout << "> " << sugestoesFinais[qtdSugestoes] << endl;

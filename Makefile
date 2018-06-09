@@ -5,10 +5,7 @@ OBJS = main.cpp trie.cpp outras.cpp
 CC = g++
 
 # Flags para o compilador
-COMPILER_FLAGS = -Wall
-
-# aqui eu recebo o uname para depois usar sabendo de é mac ou linux. Windows não trabalho no momento
-# os = $(shell uname -s)
+COMPILER_FLAGS = -w
 
 # Nome da saída
 OUTPUT_NAME = a.out
