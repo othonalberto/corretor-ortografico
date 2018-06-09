@@ -122,6 +122,20 @@ class trie
 
     }
 
+    string substituicao(string original) const {
+        // essa funcao irá mudar a primeira letra da palavra e tentar encontra UMA
+        // nova string
+    
+        // exemplo: Wedro
+        // Aedro existe? Nao
+        // Bedro existe? Nao
+        // Cedro existe? Sim!
+        // Então, retorna
+    
+        // Creio que para isso cria-se um vetor das letras do alfabeto
+        // faz um laço for pra ficar substituindo
+        // e aplica o método .has()
+    }
 
     protected:
 
