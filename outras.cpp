@@ -16,9 +16,9 @@ vector<string> boasSugestoes(string original, vector<string> sugestoes) {
     unsigned int pontos,
                  // falta definir uma ponutacao mínima para que a sugestão seja boa
                  // não simplesmente a melhor delas
-                 pontuacaoMaxima = 0;
+                 pontuacaoMaxima = 3;
     const unsigned int tamanhoEntrada = sugestoes.size();
-    
+
     int i = 0;
 
     if (original.empty() || sugestoes.empty()) return vector<string>();
@@ -30,16 +30,24 @@ vector<string> boasSugestoes(string original, vector<string> sugestoes) {
         if (regra1(original, sugestoes[i])) pontos++;
         if (regra2(original, sugestoes[i])) pontos++;
         if (regra3(original, sugestoes[i])) pontos++;
+        if (regra4(original, sugestoes[i])) pontos++;
 
         if (pontos > pontuacaoMaxima) pontuacaoMaxima = pontos;
 
         pontuacoes.push_back(pontos);
     }
 
+    //cout << "PONTUACAO MAXIMA: " << pontuacaoMaxima << endl;
+
     for (i = 0; i < tamanhoEntrada; i++) {
-        if (pontuacoes[i] >= pontuacaoMaxima)
+        if (pontuacoes[i] >= pontuacaoMaxima) {
+            //cout << "Palavra: " << sugestoes[i] << ", Pontos: " << pontuacoes[i] << endl;
             aceitas.push_back(sugestoes[i]);
+        }
     }
+
+    //cout << sugestoes.size() << endl;
+    //cout << aceitas.size() << endl;
 
     return aceitas;
 }
@@ -53,7 +61,7 @@ bool regra1(string original, string sugestao) {
     else return false;
 }
 
-bool regra2(string original, string sugestao) { 
+bool regra2(string original, string sugestao) {
     /* Este loop conta quantas letras da sugestao estão presente na original
      * Mesmo que fora de ordem
      * Exemplo:
@@ -85,12 +93,12 @@ bool regra3(string original, string sugestao) {
     //Este loop comparada INDEX POR INDEX se as letras são iguais.
     unsigned int cont = 0,
                  idxMenor;
-   
+
     int i;
 
     string menor,
            maior;
-    
+
     if (original.size() > sugestao.size()) {
         maior = original;
         menor = sugestao;
@@ -112,10 +120,23 @@ bool regra3(string original, string sugestao) {
     else return false;
 }
 
-/*
- if (erro < 2 &&
-            (sugestao.size() - qtdIgual) < 2 &&
-            (sugestao.size() - qtdDentro) < 2
-            ) return true;
-*/
+// remove letras repetidas e compara
+bool regra4(string original, string sugestao) {
+    int i = 0,
+        tamanhoPalavra = original.size();
 
+    string palavraLimpa;
+
+    while (i < tamanhoPalavra) {
+       palavraLimpa.push_back(original[i]);
+
+       if (original[i+1] == original[i]) {
+           i = i +2;
+       } else {
+           i++;
+       }
+    }
+
+    if (palavraLimpa == sugestao) return true;
+    else return false;
+}

@@ -11,3 +11,5 @@ bool regra2(string original, string sugestao);
 
 bool regra3(string original, string sugestao);
 
+bool regra4(string original, string sugestao);
+
