@@ -15,7 +15,7 @@ int main (int argc, char* argv[]) {
 
 	fstream dicIn;
 
-    string nameFile = "listautf8.txt",
+    string nameFile = "listaMinusculas.txt",
            linhaAux,
            input;
 
@@ -28,7 +28,7 @@ int main (int argc, char* argv[]) {
                  
     vector<string> todasSugestoes,
                    sugestoesFinais;
-
+    
 	char* linha = (char*)malloc(sizeof(char) * TAM_LINHA);
 
     trie<string> arvore;
@@ -56,10 +56,12 @@ int main (int argc, char* argv[]) {
         cout << "";
         cin >> linha;
         linhaAux.append(linha);
+        input.append(linha);
+
         std::transform(linhaAux.begin(), linhaAux.end(), linhaAux.begin(), ::tolower);
 
         if (arvore.has(linhaAux)) 
-            cout << linhaAux << endl;
+            cout << input << endl;
         else {
             qtdSugestoes = 0;
             auto original = linhaAux;
@@ -96,6 +98,7 @@ int main (int argc, char* argv[]) {
         }
 
         linhaAux.clear();
+        input.clear();
         todasSugestoes.clear();
     }
 
