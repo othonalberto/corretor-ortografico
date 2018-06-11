@@ -16,7 +16,7 @@ vector<string> boasSugestoes(string original, vector<string> sugestoes) {
     unsigned int pontos,
                  // falta definir uma ponutacao mínima para que a sugestão seja boa
                  // não simplesmente a melhor delas
-                 pontuacaoMaxima = 3;
+                 pontuacaoMaxima = 4;
     const unsigned int tamanhoEntrada = sugestoes.size();
 
     int i = 0;
@@ -30,19 +30,21 @@ vector<string> boasSugestoes(string original, vector<string> sugestoes) {
         if (regra1(original, sugestoes[i])) pontos++;
         if (regra2(original, sugestoes[i])) pontos++;
         if (regra3(original, sugestoes[i])) pontos++;
-        if (regra4(original, sugestoes[i])) pontos++;
+        if (regra4(original, sugestoes[i])) pontos = pontos + 4; // tem que ter um peso alto, pois a probabilidade de ser a palavra certa é enorme
         if (regra5(sugestoes[i])) pontos++;
+        if (regra6(original, sugestoes[i])) pontos++;
+        if (original.size() == sugestoes[i].size()) pontos++; // regra7: mesmo tamanho. Nao é algo que podemos descartar
 
         if (pontos > pontuacaoMaxima) pontuacaoMaxima = pontos;
+
+        //debugPontos(original, sugestoes[i]);
 
         pontuacoes.push_back(pontos);
     }
 
-    //cout << "PONTUACAO MAXIMA: " << pontuacaoMaxima << endl;
-
     for (i = 0; i < tamanhoEntrada; i++) {
         if (pontuacoes[i] >= pontuacaoMaxima) {
-            //cout << "Palavra: " << sugestoes[i] << ", Pontos: " << pontuacoes[i] << endl;
+            //debugPontos(original, sugestoes[i]);
             aceitas.push_back(sugestoes[i]);
         }
     }
@@ -153,3 +155,23 @@ bool regra5(string original) {
 
     return true;
 }
+
+bool regra6(string original, string sugestao) {
+    if (original.size() == sugestao.size()) return true;
+    else return false;
+}
+
+void debugPontos(string original, string sugestao) {
+    cout << "A palavra " << sugestao << " pontua nas seguintes regras: " << endl;
+
+    if (regra1(original, sugestao)) cout << "1, ";
+    if (regra2(original, sugestao)) cout << "2, ";
+    if (regra3(original, sugestao)) cout << "3, ";
+    if (regra4(original, sugestao)) cout << "4, ";
+    if (regra5(sugestao)) cout << "5, ";
+    if (regra6(original, sugestao)) cout << "6, ";
+    if (original.size() == sugestao.size()) cout << "7.";
+
+    cout << endl;
+}
+

@@ -22,6 +22,7 @@ Exemplos de entrada de devem ser melhoradas:
     - debro
     - wedro
     - tatauga
+    - pwdro
 
 ## Para compilar e rodar
 
