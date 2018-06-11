@@ -31,6 +31,7 @@ vector<string> boasSugestoes(string original, vector<string> sugestoes) {
         if (regra2(original, sugestoes[i])) pontos++;
         if (regra3(original, sugestoes[i])) pontos++;
         if (regra4(original, sugestoes[i])) pontos++;
+        if (regra5(sugestoes[i])) pontos++;
 
         if (pontos > pontuacaoMaxima) pontuacaoMaxima = pontos;
 
@@ -89,9 +90,9 @@ bool regra2(string original, string sugestao) {
     else return false;
 }
 
+//Este loop comparada INDEX POR INDEX (+1 para frente) se as letras são iguais.
 bool regra3(string original, string sugestao) {
-    //Este loop comparada INDEX POR INDEX se as letras são iguais.
-    unsigned int cont = 0,
+        unsigned int cont = 0,
                  idxMenor;
 
     int i;
@@ -120,7 +121,7 @@ bool regra3(string original, string sugestao) {
     else return false;
 }
 
-// remove letras repetidas e compara
+// remove 2 letras repetidas em sequencia e compara
 bool regra4(string original, string sugestao) {
     int i = 0,
         tamanhoPalavra = original.size();
@@ -139,4 +140,16 @@ bool regra4(string original, string sugestao) {
 
     if (palavraLimpa == sugestao) return true;
     else return false;
+}
+
+// procura se tem ponto final. Em geral, nao se usa. Por isso, pontos--
+bool regra5(string original) {
+    int i, tamanhoPalavra = original.size();
+
+    for (i = 0; i < tamanhoPalavra; i++) {
+        if (original[i] == '.')
+            return false;
+    }
+
+    return true;
 }
