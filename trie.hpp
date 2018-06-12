@@ -101,16 +101,17 @@ class trie
     std::vector<const K *> possiveisCandidatos(const K original, unsigned int erro) const {
         string linhaAux;
         const trie *arvore = this;
-        std::vector<const K *> ponteirosCandidatos = arvore->complete(linhaAux);
+        std::vector<const K *> ponteirosCandidatos;
         unsigned int qtd = 0;
 
         do {
             linhaAux = original.substr(0, erro);
-            auto ponteirosCandidatos = arvore->complete(linhaAux);
+            ponteirosCandidatos = arvore->complete(linhaAux);
             qtd = ponteirosCandidatos.size();
                     
             if (qtd < 1) {
                 erro--;
+                ponteirosCandidatos.clear();
             }
    
         } while (qtd < 1 && erro != 0); // se nao tiver nenhuma sugestao, ou a substring acabar
