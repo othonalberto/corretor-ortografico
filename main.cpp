@@ -67,9 +67,9 @@ int main (int argc, char* argv[]) {
             auto original = linhaAux;
             tamanhoOriginal = original.size();
             erro = arvore.ondeErro(linhaAux);
-            erro--;
+            //erro--;
 
-            while (qtdSugestoes == 0 && erro > 0) {
+            while (qtdSugestoes == 0 && erro >= 0) {
                 auto correcoes = arvore.possiveisCandidatos(original, erro);
                 qtd = correcoes.size();
                 

@@ -16,7 +16,7 @@ vector<string> boasSugestoes(string original, vector<string> sugestoes) {
     unsigned int pontos,
                  // falta definir uma ponutacao mínima para que a sugestão seja boa
                  // não simplesmente a melhor delas
-                 pontuacaoMaxima = 4;
+                 pontuacaoMaxima = 6;
     const unsigned int tamanhoEntrada = sugestoes.size();
 
     int i = 0;
