@@ -16,8 +16,9 @@ vector<string> boasSugestoes(string original, vector<string> sugestoes) {
     unsigned int pontos,
                  // falta definir uma ponutacao mínima para que a sugestão seja boa
                  // não simplesmente a melhor delas
-                 pontuacaoMaxima = 4;
-    const unsigned int tamanhoEntrada = sugestoes.size();
+                 pontuacaoMaxima = 6;
+    
+    const int tamanhoEntrada = sugestoes.size();
 
     int i = 0;
 
@@ -34,11 +35,10 @@ vector<string> boasSugestoes(string original, vector<string> sugestoes) {
         if (regra5(sugestoes[i])) pontos++;
         if (regra6(original, sugestoes[i])) pontos++;
         if (original.size() == sugestoes[i].size()) pontos++; // regra7: mesmo tamanho. Nao é algo que podemos descartar
-
+        
         if (pontos > pontuacaoMaxima) pontuacaoMaxima = pontos;
 
-        //debugPontos(original, sugestoes[i]);
-
+        
         pontuacoes.push_back(pontos);
     }
 
@@ -48,9 +48,6 @@ vector<string> boasSugestoes(string original, vector<string> sugestoes) {
             aceitas.push_back(sugestoes[i]);
         }
     }
-
-    //cout << sugestoes.size() << endl;
-    //cout << aceitas.size() << endl;
 
     return aceitas;
 }
@@ -77,9 +74,12 @@ bool regra2(string original, string sugestao) {
     int i,
         j;
 
-    for (i = 0; i < sugestao.size(); i++) {
+    const int tamanhoSugestao = sugestao.size(),
+              tamanhoOriginal = original.size();
+
+    for (i = 0; i < tamanhoSugestao; i++) {
         qtdDentro = 0;
-        for (j = 0; j < original.size(); j++) {
+        for (j = 0; j < tamanhoOriginal; j++) {
             if (sugestao[i] == original[j])
                 qtdDentro++;
         }
@@ -94,10 +94,9 @@ bool regra2(string original, string sugestao) {
 
 //Este loop comparada INDEX POR INDEX (+1 para frente) se as letras são iguais.
 bool regra3(string original, string sugestao) {
-        unsigned int cont = 0,
-                 idxMenor;
-
-    int i;
+    int i,
+        cont,
+        idxMenor;
 
     string menor,
            maior;
