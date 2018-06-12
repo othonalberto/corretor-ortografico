@@ -24,11 +24,11 @@ int main (int argc, char* argv[]) {
         qtdSugestoes = 0,
         qtd;
 
-    unsigned int tamanhoOriginal;
-                 
     vector<string> todasSugestoes,
                    sugestoesFinais;
-    
+
+    vector<const string*> correcoes;
+
 	char* linha = (char*)malloc(sizeof(char) * TAM_LINHA);
 
     trie<string> arvore;
@@ -65,21 +65,24 @@ int main (int argc, char* argv[]) {
         else {
             qtdSugestoes = 0;
             auto original = linhaAux;
-            tamanhoOriginal = original.size();
             erro = arvore.ondeErro(linhaAux);
             //erro--;
 
             while (qtdSugestoes == 0 && erro >= 0) {
-                auto correcoes = arvore.possiveisCandidatos(original, erro);
+                correcoes = arvore.possiveisCandidatos(original, erro);
                 qtd = correcoes.size();
-                
+
                 for (i = 0; i < qtd; i++) {
                     todasSugestoes.push_back((*correcoes[i]));
                 }
-                
+
                 sugestoesFinais = boasSugestoes(original, todasSugestoes);
                 qtdSugestoes = sugestoesFinais.size();
+                
                 erro--;
+                
+                todasSugestoes.clear();
+                correcoes.clear();
             }
 
             if (qtdSugestoes == 0) {

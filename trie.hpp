@@ -100,10 +100,8 @@ class trie
 
     std::vector<const K *> possiveisCandidatos(const K original, unsigned int erro) const {
         string linhaAux;
-        linhaAux = original.substr(0, erro);
         const trie *arvore = this;
- 
-        auto ponteirosCandidatos = arvore->complete(linhaAux);
+        std::vector<const K *> ponteirosCandidatos = arvore->complete(linhaAux);
         unsigned int qtd = 0;
 
         do {
@@ -135,8 +133,9 @@ class trie
             if (this->has(copia)) 
                 return copia;
         }
-   
+
         return string();
+   
     }
 
     protected:
