@@ -87,17 +87,20 @@ int main (int argc, char* argv[]) {
 
             if (qtdSugestoes == 0) {
                 // aqui entra a questão do "Wedro"
-                string nova = arvore.substituicao(original);
-                if (nova != string())
-                    cout << "> " << nova << endl;
-                else 
-                    cout << "Não foi possível corrigir a palavra \"" << original << "\"" << endl;
-            } else {
+                sugestoesFinais = arvore.substituicao(original);
+                if (sugestoesFinais != vector<string>())
+                    qtdSugestoes = sugestoesFinais.size();
+            }
+
+            if (qtdSugestoes != 0) {
                 while (qtdSugestoes > 0) {
                     qtdSugestoes--;
                     cout << "> " << sugestoesFinais[qtdSugestoes] << endl;
                 }
+            } else {
+                cout << "Não foi possível corrigir a palavra " << input << endl;
             }
+
         }
 
         linhaAux.clear();

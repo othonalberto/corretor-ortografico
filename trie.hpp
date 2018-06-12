@@ -116,26 +116,28 @@ class trie
    
         } while (qtd < 1 && erro != 0); // se nao tiver nenhuma sugestao, ou a substring acabar
     
-        if (qtd < 1 ) return std::vector<const K *>();
+        if (erro == 0) return std::vector<const K *>();
         else return ponteirosCandidatos;
 
     }
 
-    string substituicao(string original) const {
+    vector<string> substituicao(string original) const {
         // muda a primeira letra da palavra e tentar encontrar UMA nova string
 
         string copia = original;
-
+        vector<string> aceitas;
+        
         int i;
 
         for (i = 97; i < 123; i++ ) {
             copia[0] = char(i); 
 
             if (this->has(copia)) 
-                return copia;
+                aceitas.push_back(copia);
         }
 
-        return string();
+        if (aceitas.empty()) return vector<string>();
+        else return aceitas;
    
     }
 
