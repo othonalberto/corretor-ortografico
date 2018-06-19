@@ -22,12 +22,18 @@ class trie
     {}
 
     bool has( const K &collection ) const {
-        for( const auto &it : children ) {
-            if( it.second.has(collection) ) {
-                return true;
-            }
+        int i = 0,
+            tamanho = collection.size();
+
+        const trie *node = this;
+
+        for (i = 0; i < tamanho; i++) { 
+            auto achado = node->children.find(collection[i]);
+            if(achado != node->children.end()) node = &achado->second;
+            else return false;
         }
-        return flag && collection == branch ? true : false;
+
+        return true;
     }
 
     V& insert( const K &collection ) {
@@ -131,9 +137,10 @@ class trie
 
         for (i = 97; i < 123; i++ ) {
             copia[0] = char(i); 
-
-            if (this->has(copia)) 
+            
+            if (this->has(copia)){ 
                 aceitas.push_back(copia);
+            }
         }
 
         if (aceitas.empty()) return vector<string>();
