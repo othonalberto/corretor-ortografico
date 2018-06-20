@@ -21,6 +21,7 @@ class trie
     trie() : flag(false)
     {}
 
+    // método modificado
     bool has( const K &collection ) const {
         int i = 0,
             tamanho = collection.size();
@@ -128,7 +129,7 @@ class trie
     }
 
     vector<string> substituicao(string original) const {
-        // muda a primeira letra da palavra e tentar encontrar UMA nova string
+        // muda a primeira letra da palavra e tentar encontrar novas string
 
         string copia = original;
         vector<string> aceitas;

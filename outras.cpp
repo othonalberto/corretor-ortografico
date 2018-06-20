@@ -14,9 +14,7 @@ vector<string> boasSugestoes(string original, vector<string> sugestoes) {
     vector<string> aceitas;
 
     unsigned int pontos,
-                 // falta definir uma ponutacao mínima para que a sugestão seja boa
-                 // não simplesmente a melhor delas
-                 pontuacaoMaxima = 6;
+                 pontuacaoMaxima = 5;
     const int tamanhoEntrada = sugestoes.size();
 
     int i = 0;
@@ -24,7 +22,6 @@ vector<string> boasSugestoes(string original, vector<string> sugestoes) {
     if (original.empty() || sugestoes.empty()) return vector<string>();
 
     for (i = 0; i < tamanhoEntrada; i++) {
-        // aqui dentro serao as pontuacoes
         pontos = 0;
 
         if (regra1(original, sugestoes[i])) pontos++;
@@ -33,7 +30,6 @@ vector<string> boasSugestoes(string original, vector<string> sugestoes) {
         if (regra4(original, sugestoes[i])) pontos = pontos + 4; // tem que ter um peso alto, pois a probabilidade de ser a palavra certa é enorme
         if (regra5(sugestoes[i])) pontos++;
         if (regra6(original, sugestoes[i])) pontos++;
-        if (original.size() == sugestoes[i].size()) pontos++; // regra7: mesmo tamanho. Nao é algo que podemos descartar
         
         if (pontos > pontuacaoMaxima) pontuacaoMaxima = pontos;
 
@@ -43,7 +39,6 @@ vector<string> boasSugestoes(string original, vector<string> sugestoes) {
 
     for (i = 0; i < tamanhoEntrada; i++) {
         if (pontuacoes[i] >= pontuacaoMaxima) {
-            //debugPontos(original, sugestoes[i]);
             aceitas.push_back(sugestoes[i]);
         }
     }
@@ -142,7 +137,7 @@ bool regra4(string original, string sugestao) {
     else return false;
 }
 
-// procura se tem ponto final. Em geral, nao se usa. Por isso, pontos--
+// procura se tem ponto final. Em geral, nao se espera sugestao com ponto final
 bool regra5(string original) {
     int i, tamanhoPalavra = original.size();
 
@@ -154,22 +149,8 @@ bool regra5(string original) {
     return true;
 }
 
+// mesmo tamanho
 bool regra6(string original, string sugestao) {
     if (original.size() == sugestao.size()) return true;
     else return false;
 }
-
-void debugPontos(string original, string sugestao) {
-    cout << "A palavra " << sugestao << " pontua nas seguintes regras: " << endl;
-
-    if (regra1(original, sugestao)) cout << "1, ";
-    if (regra2(original, sugestao)) cout << "2, ";
-    if (regra3(original, sugestao)) cout << "3, ";
-    if (regra4(original, sugestao)) cout << "4, ";
-    if (regra5(sugestao)) cout << "5, ";
-    if (regra6(original, sugestao)) cout << "6, ";
-    if (original.size() == sugestao.size()) cout << "7.";
-
-    cout << endl;
-}
-

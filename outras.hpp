@@ -17,5 +17,4 @@ bool regra5(string original);
 
 bool regra6(string original, string sugestao);
 
-void debugPontos(string original, string sugestao);
 

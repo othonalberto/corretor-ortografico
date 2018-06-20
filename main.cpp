@@ -66,7 +66,6 @@ int main (int argc, char* argv[]) {
             qtdSugestoes = 0;
             auto original = linhaAux;
             erro = arvore.ondeErro(linhaAux);
-            //erro--;
 
             while (qtdSugestoes == 0 && erro >= 0) {
                 correcoes = arvore.possiveisCandidatos(original, erro);
@@ -86,7 +85,6 @@ int main (int argc, char* argv[]) {
             }
 
             if (qtdSugestoes == 0) {
-                // aqui entra a questão do "Wedro"
                 sugestoesFinais = arvore.substituicao(original);
                 if (sugestoesFinais != vector<string>())
                     qtdSugestoes = sugestoesFinais.size();
