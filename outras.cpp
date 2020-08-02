@@ -8,6 +8,7 @@
 #include "outras.hpp"
 
 #define MAX_INICIAL 5
+#define ERRO_MIN_ACEITO 2
 
 using namespace std;
 
@@ -48,9 +49,7 @@ vector<string> boasSugestoes(string original, vector<string> sugestoes) {
 bool regra1(string original, string sugestao) {
     int erro = original.size() - sugestao.size();
 
-    erro = abs(erro);
-
-    return (erro < 2);
+    return (abs(erro) < ERRO_MIN_ACEITO);
 }
 
 bool regra2(string original, string sugestao) {
@@ -77,7 +76,7 @@ bool regra2(string original, string sugestao) {
 
     }
 
-    return ((sugestao.size() - qtdIgual) < 2 );
+    return ((sugestao.size() - qtdIgual) < ERRO_MIN_ACEITO );
 }
 
 //Este loop comparada INDEX POR INDEX (+1 para frente) se as letras são iguais.
@@ -106,7 +105,7 @@ bool regra3(string original, string sugestao) {
         }
     }
 
-    return ((sugestao.size() - cont) < 2);
+    return ((sugestao.size() - cont) < ERRO_MIN_ACEITO);
 }
 
 // remove 2 letras repetidas em sequencia e compara
