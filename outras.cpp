@@ -7,21 +7,20 @@
 #include "trie.hpp"
 #include "outras.hpp"
 
+#define MAX_INICIAL 5
+
 using namespace std;
 
 vector<string> boasSugestoes(string original, vector<string> sugestoes) {
     vector<unsigned int> pontuacoes;
     vector<string> aceitas;
 
-    unsigned int pontos,
-                 pontuacaoMaxima = 5;
-    const int tamanhoEntrada = sugestoes.size();
-
-    int i = 0;
+    unsigned int pontos;
+    unsigned int pontuacaoMaxima = MAX_INICIAL;
 
     if (original.empty() || sugestoes.empty()) return vector<string>();
 
-    for (i = 0; i < tamanhoEntrada; i++) {
+    for (int i = 0; i < sugestoes.size(); i++) {
         pontos = 0;
 
         if (regra1(original, sugestoes[i])) pontos++;
@@ -37,7 +36,7 @@ vector<string> boasSugestoes(string original, vector<string> sugestoes) {
         pontuacoes.push_back(pontos);
     }
 
-    for (i = 0; i < tamanhoEntrada; i++) {
+    for (int i = 0; i < sugestoes.size(); i++) {
         if (pontuacoes[i] >= pontuacaoMaxima) {
             aceitas.push_back(sugestoes[i]);
         }
@@ -51,8 +50,7 @@ bool regra1(string original, string sugestao) {
 
     erro = abs(erro);
 
-    if (erro < 2) return true;
-    else return false;
+    return (erro < 2);
 }
 
 bool regra2(string original, string sugestao) {
@@ -62,38 +60,33 @@ bool regra2(string original, string sugestao) {
      * Entrada = caasa; Sugestao = cara
      * Saída = 3
      */
-    unsigned int qtdDentro = 0,
-                 qtdIgual = 0;
+    unsigned int qtdIgual = 0;
 
-    int i,
-        j;
+    for (int i = 0; i < sugestao.size(); i++) {
 
-    const int tamanhoSugestao = sugestao.size(),
-              tamanhoOriginal = original.size();
+        unsigned int repetido = 0;
 
-    for (i = 0; i < tamanhoSugestao; i++) {
-        qtdDentro = 0;
-        for (j = 0; j < tamanhoOriginal; j++) {
+        for (int j = 0; j < original.size(); j++) {
             if (sugestao[i] == original[j])
-                qtdDentro++;
+                repetido++;
         }
 
-        if (qtdDentro > 0)
+        if (repetido > 0) {
             qtdIgual++;
+        }
+
     }
 
-    if ((sugestao.size() - qtdIgual) < 2 ) return true;
-    else return false;
+    return ((sugestao.size() - qtdIgual) < 2 );
 }
 
 //Este loop comparada INDEX POR INDEX (+1 para frente) se as letras são iguais.
 bool regra3(string original, string sugestao) {
-    int i,
-        cont = 0,
-        idxMenor;
+    unsigned int cont = 0;
+    unsigned int idxMenor;
 
-    string menor,
-           maior;
+    string menor;
+    string maior;
 
     if (original.size() > sugestao.size()) {
         maior = original;
@@ -105,25 +98,24 @@ bool regra3(string original, string sugestao) {
         idxMenor = original.size();
     }
 
-    for (i = 0; i < idxMenor; i++) {
-        if (menor[i] == maior[i])
+    for (int i = 0; i < idxMenor; i++) {
+        if (menor[i] == maior[i]) {
             cont++;
-        else
-            if (i < idxMenor-1 && menor[i] == maior[i+1]) cont++;
+        } else if (i < idxMenor-1 && menor[i] == maior[i+1]) {
+            cont++;
+        }
     }
 
-    if ((sugestao.size() - cont) < 2) return true;
-    else return false;
+    return ((sugestao.size() - cont) < 2);
 }
 
 // remove 2 letras repetidas em sequencia e compara
 bool regra4(string original, string sugestao) {
-    int i = 0,
-        tamanhoPalavra = original.size();
+    int i = 0;
 
     string palavraLimpa;
 
-    while (i < tamanhoPalavra) {
+    while (i < original.size()) {
        palavraLimpa.push_back(original[i]);
 
        if (original[i+1] == original[i]) {
@@ -133,15 +125,12 @@ bool regra4(string original, string sugestao) {
        }
     }
 
-    if (palavraLimpa == sugestao) return true;
-    else return false;
+    return (palavraLimpa == sugestao);
 }
 
 // procura se tem ponto final. Em geral, nao se espera sugestao com ponto final
 bool regra5(string original) {
-    int i, tamanhoPalavra = original.size();
-
-    for (i = 0; i < tamanhoPalavra; i++) {
+    for (int i = 0; i < original.size(); i++) {
         if (original[i] == '.')
             return false;
     }
@@ -151,6 +140,5 @@ bool regra5(string original) {
 
 // mesmo tamanho
 bool regra6(string original, string sugestao) {
-    if (original.size() == sugestao.size()) return true;
-    else return false;
+    return (original.size() == sugestao.size());
 }
