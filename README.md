@@ -6,23 +6,11 @@
 
 Alunos: [Leandro Chesini](https://github.com/chesini), [Lucas Paris](https://github.com/lucasrv8), [Matheus Scaketti](https://github.com/scaketti), [Pedro Botelho](https://github.com/bwpedro) e [Othon Alberto](https://github.com/othonalberto)
 
-## Questões a resolver:
+## Observações
 
-- [ ] A complexidade está ruim. Precisamos achar os gargálos e tentar
-  resolve-los.
-- [ ] - Processar todas as palavras duma vez
-    - Retornar somente as melhores dentre elas
-    - Sistema de pontuação
+Trabalho de Análise e Projeto de Algoritmos, UTFPR-PG 2018/1.
 
-- [x] - No caso do "wedro" abaixo, quando chega no index 0 sem nenhuma palavra
-boa, começa a trocar a primeira letra
-
-Exemplos de entrada de devem ser melhoradas:
-
-    - debro
-    - wedro
-    - tatauga
-    - pwdro
+Sugestões baseadas em conjunto de regras com pontuação.
 
 ## Para compilar e rodar
 
